@@ -1,9 +1,5 @@
 services:
   - type: web
     name: thuctap-laravel
-    env: php
+    env: docker
     rootDir: quan_ly_lop
-    buildCommand: |
-      composer install --no-dev --optimize-autoloader
-      php artisan key:generate
-    startCommand: php artisan serve --host 0.0.0.0 --port 10000
