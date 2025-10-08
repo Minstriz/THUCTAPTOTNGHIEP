@@ -15,8 +15,7 @@ WORKDIR /app
 # Copy toàn bộ mã nguồn vào container
 COPY . .
 
-# Cài dependency của Laravel
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --no-dev --optimize-autoloader --ignore-platform-reqs || composer require barryvdh/laravel-dompdf --no-interaction
 
 # Tạo key ứng dụng (bỏ qua lỗi nếu có)
 RUN php artisan key:generate || true
