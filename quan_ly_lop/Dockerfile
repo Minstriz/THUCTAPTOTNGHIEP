@@ -1,11 +1,11 @@
 # Base image PHP 8.2
 FROM php:8.2-cli
 
-# Cài đặt các extension Laravel cần
+# Cài các extension Laravel cần, bao gồm cả zip
 RUN apt-get update && apt-get install -y \
-    unzip git curl libpng-dev libjpeg-dev libfreetype6-dev libonig-dev libxml2-dev zip \
-    && docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd
-
+    unzip git curl libzip-dev libpng-dev libjpeg-dev libfreetype6-dev libonig-dev libxml2-dev zip \
+    && docker-php-ext-configure zip \
+    && docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd zip
 # Cài Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
